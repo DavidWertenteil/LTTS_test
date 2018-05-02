@@ -1,21 +1,6 @@
 import schedule
 import time
 
-# def job():
-#     print("I'm working...")
-
-# schedule.every(10).minutes.do(job)
-# schedule.every(0.5).minutes.do(job)
-# schedule.every().day.at("10:30").do(job)
-# schedule.every(5).to(10).days.do(job)
-# schedule.every().monday.do(job)
-# schedule.every().wednesday.at("13:15").do(job)
-
-# while True:
-#     schedule.run_pending()
-# Import smtplib for the actual sending function
-
-
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -23,19 +8,20 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 
-def main():
+def send_email():
     sender_email_address = 'david.wertenteil@lnttechservices.com'
     sender_email_password = ''
     receiver_email_address = 'david.wertenteil@lnttechservices.com'
 
-    email_subject_line = 'Test!'
+    email_subject_line = 'Please read the email!'
 
     msg = MIMEMultipart()
     msg['From'] = sender_email_address
     msg['To'] = receiver_email_address
     msg['Subject'] = email_subject_line
 
-    email_body = 'Hello World. This is Python email sender application with Attachments.'
+    email_body = 'Good morning Amit!!' + '\n\n' + "This is an automatic email send to you!!"
+    email_body += '\n\n' + "Have A wonderful day!!" + '\n\n' + "David"
     msg.attach(MIMEText(email_body, 'plain'))
 
     filename = 'text.txt'
@@ -56,4 +42,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    schedule.every().day.at("08:30").do(send_email)
+    while True:
+        schedule.run_pending()
