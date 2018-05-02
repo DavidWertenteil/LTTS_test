@@ -23,32 +23,37 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 
-sender_email_address = 'david.wertenteil@lnttechservices.com'
-sender_email_password = ''
-receiver_email_address = 'david.wertenteil@lnttechservices.com'
+def main():
+    sender_email_address = 'david.wertenteil@lnttechservices.com'
+    sender_email_password = ''
+    receiver_email_address = 'david.wertenteil@lnttechservices.com'
 
-email_subject_line = 'Test!'
+    email_subject_line = 'Test!'
 
-msg = MIMEMultipart()
-msg['From'] = sender_email_address
-msg['To'] = receiver_email_address
-msg['Subject'] = email_subject_line
+    msg = MIMEMultipart()
+    msg['From'] = sender_email_address
+    msg['To'] = receiver_email_address
+    msg['Subject'] = email_subject_line
 
-email_body = 'Hello World. This is Python email sender application with Attachments.'
-msg.attach(MIMEText(email_body, 'plain'))
+    email_body = 'Hello World. This is Python email sender application with Attachments.'
+    msg.attach(MIMEText(email_body, 'plain'))
 
-filename = 'text.txt'
-attachment_file = open(filename, 'rb')
-part = MIMEBase('application', 'octet-stream')
-part.set_payload((attachment_file).read())
-encoders.encode_base64(part)
-part.add_header('Content-Disposition', "attachment_file; filename = " + filename)
+    filename = 'text.txt'
+    attachment_file = open(filename, 'rb')
+    part = MIMEBase('application', 'octet-stream')
+    part.set_payload((attachment_file).read())
+    encoders.encode_base64(part)
+    part.add_header('Content-Disposition', "attachment_file; filename = " + filename)
 
-msg.attach(part)
+    msg.attach(part)
 
-email_body_content = msg.as_string()
-server = smtplib.SMTP('smtp-mail.outlook.com:587')
-server.starttls()
-server.login(sender_email_address, sender_email_password)
-server.sendmail(sender_email_address, receiver_email_address, email_body_content)
-server.quit()
+    email_body_content = msg.as_string()
+    server = smtplib.SMTP('smtp-mail.outlook.com:587')
+    server.starttls()
+    server.login(sender_email_address, sender_email_password)
+    server.sendmail(sender_email_address, receiver_email_address, email_body_content)
+    server.quit()
+
+
+if __name__ == '__main__':
+    main()
