@@ -30,7 +30,6 @@ def send_email():
     part.set_payload((attachment_file).read())
     encoders.encode_base64(part)
     part.add_header('Content-Disposition', "attachment_file; filename = " + filename)
-
     msg.attach(part)
 
     email_body_content = msg.as_string()
