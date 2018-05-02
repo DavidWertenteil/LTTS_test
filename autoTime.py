@@ -11,7 +11,7 @@ from email import encoders
 def send_email():
     sender_email_address = 'david.wertenteil@lnttechservices.com'
     sender_email_password = ''
-    receiver_email_address = 'david.wertenteil@lnttechservices.com'
+    receiver_email_address = 'Amit.Tene@lnttechservices.com'
 
     email_subject_line = 'Please read the email!'
 
