@@ -25,7 +25,7 @@ from email import encoders
 
 sender_email_address = 'david.wertenteil@lnttechservices.com'
 sender_email_password = ''
-receiver_email_address = 'davw664@gmail.com'
+receiver_email_address = 'david.wertenteil@lnttechservices.com'
 
 email_subject_line = 'Test!'
 
