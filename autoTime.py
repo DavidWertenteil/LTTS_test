@@ -1,4 +1,5 @@
 import schedule
+from ps import ps
 import time
 
 import smtplib
@@ -9,8 +10,8 @@ from email import encoders
 
 
 def send_email():
-    sender_email_address = 'david.wertenteil@lnttechservices.com'
-    sender_email_password = ''
+    sender_email_address = 'LttsLunch@gmail.com'
+    sender_email_password = ps
     receiver_email_address = 'davw664@gmail.com'
 #'Amit.Tene@lnttechservices.com'
 
@@ -34,7 +35,7 @@ def send_email():
     msg.attach(part)
 
     email_body_content = msg.as_string()
-    server = smtplib.SMTP('smtp-mail.outlook.com:587')
+    server = smtplib.SMTP('smtp.gmail.com:587')
     server.starttls()
     server.login(sender_email_address, sender_email_password)
     server.sendmail(sender_email_address, receiver_email_address, email_body_content)
@@ -42,6 +43,6 @@ def send_email():
 
 
 if __name__ == '__main__':
-    schedule.every().day.at("20:45").do(send_email)
+    schedule.every().day.at("09:46").do(send_email)
     while True:
         schedule.run_pending()
