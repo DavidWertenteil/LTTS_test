@@ -44,7 +44,11 @@
         <h4>Please choose one main dish and two side dishes</h4>
         {% for field in order_fields %}
         <div class="form-group has-feedback">
-            <input type="text" placeholder={{ field }} name={{ field }} maxlength="10">
+            {% if field == "cibus_number" or field == "name" %}
+              <input type="text" placeholder={{ field }} name={{ field }} maxlength="10" required>
+            {% else %}
+              <input type="text" placeholder={{ field }} name={{ field }} maxlength="10">
+            {% endif %}
         </div>
         {% endfor %}
 
