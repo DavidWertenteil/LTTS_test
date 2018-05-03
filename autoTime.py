@@ -45,3 +45,4 @@ if __name__ == '__main__':
     schedule.every().day.at("09:54").do(send_email)
     while True:
         schedule.run_pending()
+
