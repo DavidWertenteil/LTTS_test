@@ -37,7 +37,7 @@ def set_order():
                 if exc.errno != errno.EISDIR:
                     raise
 
-        # send_email()
+        send_email()
 
 
 def empty_orders_dir():
@@ -60,7 +60,7 @@ def send_email():
     msg.attach(MIMEText(email_body, 'plain'))
 
     filename = os.path.join(path_to_send_to_chef_files,
-                            'order_lunch_' + str(datetime.date.today())) + '.json'
+                            'order_lunch_' + str(datetime.date.today())) + '.csv'
     part = MIMEBase('application', 'octet-stream')
     with open(filename, 'rb') as attachment_file:
         part.set_payload(attachment_file.read())
