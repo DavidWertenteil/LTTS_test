@@ -10,31 +10,32 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 from ps import ps
+import csv
 
 path_to_order_files = 'order_files/'
 path_to_send_to_chef_files = 'send_to_chef_files/'
 sender_email_address = 'LttsLunch@gmail.com'
 sender_email_password = ps
 receiver_email_address = 'davw664@gmail.com'
+fields = ["cibus", "name", "main_dish", "side_dish_no.1", "side_dish_no.2"]
+
 
 def set_order():
     path = os.path.join(path_to_order_files, '*.json')
     files = glob.glob(path)
-    order_data = {}
-    for name in files:
-        try:
-            with open(name, encoding='utf-8') as f:
-                order_data.update(json.load(f))
+    with open(os.path.join(path_to_send_to_chef_files, 'order_lunch_' + str(datetime.date.today())) + '.csv',
+              'w', newline='') as outfile:
+        writer = csv.DictWriter(outfile, fieldnames=fields)
+        writer.writeheader()
 
-        except IOError as exc:
-            if exc.errno != errno.EISDIR:
-                raise  # Propagate other kinds of IOError.
+        for name in files:
+            try:
+                with open(name, encoding='utf-8') as f:
+                    writer.writerow(dict(json.load(f)))
 
-    with open(os.path.join(path_to_send_to_chef_files, 'order_lunch_' + str(datetime.date.today())) + '.json',
-              'w') as outfile:
-        json.dump(order_data, outfile)
-
-    send_email()
+            except IOError as exc:
+                if exc.errno != errno.EISDIR:
+                    raise
 
 
 def empty_orders_dir():
@@ -57,13 +58,13 @@ def send_email():
     msg.attach(MIMEText(email_body, 'plain'))
 
     filename = os.path.join(path_to_send_to_chef_files,
-                            'order_lunch_' + str(datetime.date.today())) + '.json'
+                            'order_lunch_' + str(datetime.date.today())) + '.csv'
     part = MIMEBase('application', 'octet-stream')
     with open(filename, 'rb') as attachment_file:
         part.set_payload(attachment_file.read())
         encoders.encode_base64(part)
         part.add_header('Content-Disposition', "attachment_file; filename = order_lunch_" +
-                        str(datetime.date.today()) + '.json')
+                        str(datetime.date.today()) + '.csv')
 
     msg.attach(part)
 
@@ -76,12 +77,12 @@ def send_email():
 
 
 if __name__ == '__main__':
-
-    # schedule.every().day.at("10:45").do(set_order)
-    # schedule.every().day.at("10:50").do(send_email)
-    # schedule.every().day.at("11:55").do(empty_orders_dir)
-
-    schedule.every(2).minutes.do(set_order)
-
+    # set_order()
+    schedule.every().day.at("10:45").do(set_order)
+    schedule.every().day.at("11:46").do(send_email)
+    schedule.every().day.at("11:57").do(empty_orders_dir)
+    #
+    # schedule.every(2).minutes.do(set_order)
+    #
     while True:
         schedule.run_pending()
