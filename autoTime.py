@@ -23,21 +23,19 @@ fields = ["cibus", "name", "main_dish", "side_dish_no.1", "side_dish_no.2"]
 def set_order():
     path = os.path.join(path_to_order_files, '*.json')
     files = glob.glob(path)
-    order_data = {}
     with open(os.path.join(path_to_send_to_chef_files, 'order_lunch_' + str(datetime.date.today())) + '.csv',
-              'w') as outfile:
+              'w', newline='') as outfile:
         writer = csv.DictWriter(outfile, fieldnames=fields)
+        writer.writeheader()
 
         for name in files:
             try:
                 with open(name, encoding='utf-8') as f:
-                    # stra =
                     writer.writerow(dict(json.load(f)))
+
             except IOError as exc:
                 if exc.errno != errno.EISDIR:
                     raise
-
-        send_email()
 
 
 def empty_orders_dir():
@@ -79,12 +77,12 @@ def send_email():
 
 
 if __name__ == '__main__':
-    set_order()
-    # schedule.every().day.at("10:45").do(set_order)
-    # schedule.every().day.at("10:50").do(send_email)
-    # schedule.every().day.at("11:55").do(empty_orders_dir)
+    # set_order()
+    schedule.every().day.at("16:45").do(set_order)
+    schedule.every().day.at("16:46").do(send_email)
+    schedule.every().day.at("11:55").do(empty_orders_dir)
     #
     # schedule.every(2).minutes.do(set_order)
     #
-    # while True:
-    #     schedule.run_pending()
+    while True:
+        schedule.run_pending()
