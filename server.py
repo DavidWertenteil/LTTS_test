@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request
 import json
 
-from Testing import single_test, multi_test
-
 app = Flask(__name__)
 
 @app.route('/',methods = ['POST', 'GET'])
@@ -19,8 +17,7 @@ def get_order():
         sideDish1 = request.form['side1']
         sideDish2 = request.form['side2']
 
-        order[cibus] = {}
-        order[cibus].update({'name': name, 'main_dish': mainDish, 'side_dish_no.1': sideDish1,
+        order.update({'cibus': cibus, 'name': name, 'main_dish': mainDish, 'side_dish_no.1': sideDish1,
                              'side_dish_no.2': sideDish2})
         print (order)
         with open('{}.json'.format(cibus), 'w') as fp:
