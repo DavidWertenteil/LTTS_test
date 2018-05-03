@@ -5,7 +5,6 @@ import glob
 import errno
 import json
 import os.path
-from pprint import pprint
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
@@ -14,7 +13,9 @@ from ps import ps
 
 path_to_order_files = 'order_files/'
 path_to_send_to_chef_files = 'send_to_chef_files/'
-
+sender_email_address = 'LttsLunch@gmail.com'
+sender_email_password = ps
+receiver_email_address = 'davw664@gmail.com'
 
 def set_order():
     path = os.path.join(path_to_order_files, '*.json')
@@ -33,6 +34,8 @@ def set_order():
               'w') as outfile:
         json.dump(order_data, outfile)
 
+    send_email()
+
 
 def empty_orders_dir():
     path = os.path.join(path_to_order_files, '*.json')
@@ -42,10 +45,6 @@ def empty_orders_dir():
 
 
 def send_email():
-    sender_email_address = 'LttsLunch@gmail.com'
-    sender_email_password = ps
-    receiver_email_address = 'davw664@gmail.com'
-
     email_subject_line = 'Please read the email!'
 
     msg = MIMEMultipart()
@@ -59,12 +58,13 @@ def send_email():
 
     filename = os.path.join(path_to_send_to_chef_files,
                             'order_lunch_' + str(datetime.date.today())) + '.json'
-    attachment_file = open(filename, 'rb')
     part = MIMEBase('application', 'octet-stream')
-    part.set_payload(attachment_file.read())
-    encoders.encode_base64(part)
-    part.add_header('Content-Disposition', "attachment_file; filename = order_lunch_" +
-                    str(datetime.date.today()) + '.json')
+    with open(filename, 'rb') as attachment_file:
+        part.set_payload(attachment_file.read())
+        encoders.encode_base64(part)
+        part.add_header('Content-Disposition', "attachment_file; filename = order_lunch_" +
+                        str(datetime.date.today()) + '.json')
+
     msg.attach(part)
 
     email_body_content = msg.as_string()
@@ -76,10 +76,12 @@ def send_email():
 
 
 if __name__ == '__main__':
-    set_order()
-    send_email()
-    # empty_orders_dir()
-    # schedule.every().day.at("10:52").do(set_order)
-    # schedule.every().day.at("10:53").do(send_email)
-    # while True:
-    #     schedule.run_pending()
+
+    # schedule.every().day.at("10:45").do(set_order)
+    # schedule.every().day.at("10:50").do(send_email)
+    # schedule.every().day.at("11:55").do(empty_orders_dir)
+
+    schedule.every(2).minutes.do(set_order)
+
+    while True:
+        schedule.run_pending()
