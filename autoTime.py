@@ -78,9 +78,9 @@ def send_email():
 
 if __name__ == '__main__':
     # set_order()
-    schedule.every().day.at("16:45").do(set_order)
-    schedule.every().day.at("16:46").do(send_email)
-    schedule.every().day.at("11:55").do(empty_orders_dir)
+    schedule.every().day.at("10:45").do(set_order)
+    schedule.every().day.at("11:46").do(send_email)
+    schedule.every().day.at("11:57").do(empty_orders_dir)
     #
     # schedule.every(2).minutes.do(set_order)
     #
