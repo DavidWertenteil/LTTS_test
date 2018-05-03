@@ -1,1 +1,0 @@
-Hello World. This is Python email sender application with Attachments.
