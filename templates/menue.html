@@ -40,21 +40,17 @@
 
 
     <form action="/get_order" method="post">
-      <div class="form-group has-feedback">
-        <input type="text" placeholder="name" name="name" maxlength="10">
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" placeholder="cibus number" name="cibus" maxlength="10">
-      </div>
         <h4>Please choose one main dish and two side dishes</h4>
-      <div class="form-group has-feedback">
-        <input type="text" placeholder="main dish" name="maindish" maxlength="10">
-      </div>
-      <div class="form-group has-feedback">
-        <input type="text" placeholder="side dish no.1" name="side1" maxlength="10">
-      </div>
+        {% for field in order_fields %}
         <div class="form-group has-feedback">
-        <input type="text" placeholder="side dish no.2" name="side2" maxlength="10">
+        <input type="text" placeholder={{ field }} name={{ field }} maxlength="10">
+      </div>
+        {% endfor %}
+
+
+
+        <div class="form-group has-feedback">
+        <input type="text" placeholder="notes" name="notes">
       </div>
         <div class="row">
         <!-- /.col -->
