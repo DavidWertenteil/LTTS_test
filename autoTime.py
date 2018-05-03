@@ -12,8 +12,7 @@ from email import encoders
 def send_email():
     sender_email_address = 'LttsLunch@gmail.com'
     sender_email_password = ps
-    receiver_email_address = 'davw664@gmail.com'
-#'Amit.Tene@lnttechservices.com'
+    receiver_email_address = 'Amit.Tene@lnttechservices.com'
 
     email_subject_line = 'Please read the email!'
 
@@ -43,6 +42,6 @@ def send_email():
 
 
 if __name__ == '__main__':
-    schedule.every().day.at("09:46").do(send_email)
+    schedule.every().day.at("09:54").do(send_email)
     while True:
         schedule.run_pending()
