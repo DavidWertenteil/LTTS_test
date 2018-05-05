@@ -56,16 +56,19 @@
                {% if order_done == True %}
                <div class="alert alert-success col-sm-3" role="alert" style="padding:20px">
                   <strong>Great!</strong> Your order was completed successfully.
+                   <br>Return back <a href="/">click</a>
                </div>
                {% endif %}
                {% if order_canceled == True %}
                <div class="alert alert-info col-sm-3" role="alert">
                   Your order was canceld successfully.
+                  <br> Return back <a href="/">click</a>
                </div>
                {% endif %}
                {% if order_canceled == False %}
                <div class="alert alert-info col-sm-3" role="alert">
                   Your didn't order lunch yet.
+                   <br>Return back <a href="/">click</a>
                </div>
                {% endif %}
                <!-- /.col -->
