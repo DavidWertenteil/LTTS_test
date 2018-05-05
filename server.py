@@ -23,14 +23,17 @@ def get_order():
     file_path = os.path.join(path_to_order_files, '{}.json'.format(cibus))
 
     if (request.form['submit'] == 'cancel'):
+        order_canceled = False
         if (os.path.isfile(file_path)):
             os.remove(file_path)
+            order_canceled = True
+        return render_template('menue.html', order_fields=ORDER_FIELDS, order_canceled = order_canceled), 201
     else:
         print(order)
         with open(file_path, 'w') as fp:
             json.dump(order, fp, indent=4, sort_keys=True)
 
-    return render_template('menue.html', order_fields = ORDER_FIELDS), 201
+    return render_template('menue.html', order_fields = ORDER_FIELDS, order_done = True), 201
 
 
 
