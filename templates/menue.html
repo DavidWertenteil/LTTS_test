@@ -41,7 +41,7 @@
 
 <div style="padding:10px;">
     <form action="/get_order" method="post">
-        <h4>Please choose one main dish and two side dishes</h4>
+        <h4>Please choose one main dish and two side dishes Until 10:45 AM</h4>
         {% for field in order_fields %}
         <div class="form-group has-feedback">
             {% if field == "cibus_number" or field == "name" %}
@@ -59,10 +59,12 @@
         <div class="row">
             <!-- /.col -->
             <div class="col-xs-6" style="padding:20px">
-                <button type="submit" class="btn btn-primary ">Submit</button>
+                <button type="submit" class="btn btn-primary " name="submit" value="submit">Submit</button>
             </div>
-
-
+            <div class="col-xs-6" style="padding:15px">
+            <p>In order to cancel your order, please click below before 10:45 AM </p>
+             <button type="submit" class="btn btn-primary " name="submit" value="cancel" >Cancel</button>
+            </div>
             <div class="col-sm-2">
                 <img class="img-responsive" src="../static/images/bonappetit.png" alt="Photo">
             </div>

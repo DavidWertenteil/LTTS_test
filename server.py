@@ -19,9 +19,16 @@ def get_order():
         order.update({field:request.form[field]})
 
     order.update({'notes': request.form['notes']})
-    print(order)
-    with open(os.path.join(path_to_order_files, '{}.json'.format(cibus)), 'w') as fp:
-        json.dump(order, fp, indent=4, sort_keys=True)
+
+    file_path = os.path.join(path_to_order_files, '{}.json'.format(cibus))
+
+    if (request.form['submit'] == 'cancel'):
+        if (os.path.isfile(file_path)):
+            os.remove(file_path)
+    else:
+        print(order)
+        with open(file_path, 'w') as fp:
+            json.dump(order, fp, indent=4, sort_keys=True)
 
     return render_template('menue.html', order_fields = ORDER_FIELDS), 201
 
