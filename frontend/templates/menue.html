@@ -52,19 +52,19 @@
             </div>
             <div class="row">
                {% if order_done == True %}
-               <div class="alert alert-success col-sm-3" role="alert" style="padding:20px">
-                  <strong>מצויין!</strong> הזמנתך נשלחה
+               <div class="alert alert-success col-sm-3 pull-right" role="alert" style="padding:20px">
+                   הזמנתך נשלחה
                    <br> חזור/י <a href="/">כאן</a>
                </div>
                {% endif %}
                {% if order_canceled == True %}
-               <div class="alert alert-info col-sm-3" role="alert">
+               <div class="alert alert-info col-sm-3 pull-right" role="alert">
                   הזמנתך בוטלה
                   <br> חזור/י <a href="/">כאן</a>
                </div>
                {% endif %}
                {% if order_canceled == False %}
-               <div class="alert alert-info col-sm-3" role="alert">
+               <div class="alert alert-info col-sm-3 pull-right" role="alert">
                   אין הזמנה על שמך
                    <br>חזור/י <a href="/">כאן</a>
                </div>
