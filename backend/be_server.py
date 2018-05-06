@@ -28,7 +28,7 @@ def set_order():
     path = os.path.join(path_to_order_files, '*.json')
     files = glob.glob(path)
     with open(os.path.join(path_to_send_to_chef_files, 'order_lunch_' + str(datetime.date.today())) + '.csv',
-              'w', newline='') as outfile:
+              'w+', newline='') as outfile:
         writer = csv.DictWriter(outfile, fieldnames=fields)
         writer.writeheader()
 
