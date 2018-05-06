@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import json
 import os
-from common import ORDER_FIELDS
+from config.common import ORDER_FIELDS
 
 app = Flask(__name__)
 path_to_order_files = 'order_files/'
@@ -39,4 +39,4 @@ def get_order():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port = 80)
