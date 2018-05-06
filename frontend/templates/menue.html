@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
    <head>
@@ -28,7 +26,7 @@
       <link rel="stylesheet"
          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
    </head>
-   <body class="hold-transition login-page">
+   <body class="hold-transition login-page" dir="rtl">
       <div class="login-logo">
          <a href="#"><b>LTTS </b>Lunch Order</a>
          <img class="center" src="../static/images/logo.png" alt="Photo">
@@ -39,7 +37,7 @@
       <!-- /.login-logo -->
       <div style="padding:10px;">
          <form action="/get_order" method="post">
-            <h4>Please choose one main dish and two side dishes Until 10:45 AM</h4>
+            <h4>נא לבחור מנה עיקרית אחת ושתי תוספות עד 10:45</h4>
             {% for field in order_fields %}
             <div class="form-group has-feedback">
                {% if field == "cibus_number" or field == "name" %}
@@ -80,7 +78,7 @@
                   <button type="submit" class="btn btn-warning" name="submit" value="cancel" >Cancel</button>
                </div>
                <div class="col-sm-2">
-                  <img class="img-responsive" src="../static/images/bonappetit.png" alt="Photo">
+                  <img class="img-responsive" src="../static/images/bonappetit.png" alt="Photo" align="right">
                </div>
                <!-- /.col -->
             </div>

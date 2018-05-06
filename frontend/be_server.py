@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request
 import json
 import os
-from config.common import ORDER_FIELDS
+from config.common import ORDER_FIELDS, MAX_TIME_FOR_ORDERING
+import datetime
 
 app = Flask(__name__)
 path_to_order_files = 'order_files/'
@@ -10,7 +11,11 @@ cibus_number = ORDER_FIELDS[0]
 
 @app.route('/', methods=['POST', 'GET'])
 def ui():
-    return render_template('menue.html', order_fields=ORDER_FIELDS)
+    def_page = 'menue.html'
+    time_now = datetime.datetime.now()
+    if time_now.hour > MAX_TIME_FOR_ORDERING:
+        def_page = 'idle.html'
+    return render_template(def_page, order_fields=ORDER_FIELDS)
 
 
 @app.route('/get_order', methods=['POST'])
@@ -29,7 +34,7 @@ def get_order():
         if (os.path.isfile(file_path)):
             os.remove(file_path)
             order_canceled = True
-        return render_template('menue.html', order_fields=ORDER_FIELDS, order_canceled=order_canceled), 201
+
     else:
         print(order)
         with open(file_path, 'w') as fp:
@@ -39,4 +44,4 @@ def get_order():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port = 80)
+    app.run(host='localhost', port = 80)
