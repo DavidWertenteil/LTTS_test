@@ -28,7 +28,7 @@ def set_order():
     path = os.path.join(path_to_order_files, '*.json')
     files = glob.glob(path)
     with open(os.path.join(path_to_send_to_chef_files, 'order_lunch_' + str(datetime.date.today())) + '.csv',
-              'w', newline='') as outfile:
+              'w+', newline='') as outfile:
         writer = csv.DictWriter(outfile, fieldnames=fields)
         writer.writeheader()
 
@@ -91,9 +91,9 @@ if __name__ == '__main__':
     # set_order()
     # send_email()
     # empty_orders_dir()
-    schedule.every().day.at("17:02").do(set_order)
-    schedule.every().day.at("17:03").do(send_email)
-    schedule.every().day.at("17:04").do(empty_orders_dir)
+    schedule.every().day.at("17:10").do(set_order)
+    schedule.every().day.at("17:11").do(send_email)
+    schedule.every().day.at("17:12").do(empty_orders_dir)
     #
     # schedule.every(2).minutes.do(set_order)
     #
