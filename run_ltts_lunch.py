@@ -18,5 +18,6 @@ os.sys.path.insert(0, "/backend/be_server.py")
 os.sys.path.insert(0, "frontend/fe_server")
 # import be_server
 if __name__ == '__main__':
-    subprocess.check_output(run_backend_srver)
-    subprocess.check_output(run_frontend_srver)
+    os.system('python3 be_server.py &')
+    # subprocess.check_output(run_backend_srver)
+    # subprocess.check_output(run_frontend_srver)
