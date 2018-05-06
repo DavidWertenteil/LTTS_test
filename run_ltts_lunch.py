@@ -14,15 +14,11 @@ import subprocess, os
 run_backend_srver = ['python3', 'be_server.py', '&']
 run_frontend_srver = ['python3', 'fe_server.py', '&']
 
-<<<<<<< HEAD
-os.sys.path.insert(0, "backend/be_server.py")
-os.sys.path.insert(0, "backend/fe_server.py")
 
-=======
 os.sys.path.insert(0, "ltts_lunch/backend/be_server")
 os.sys.path.insert(0, "frontend/fe_server")
 import be_server
->>>>>>> 92f2b53f7c82a41dbe9a36b107f636e6996bb7f2
+
 if __name__ == '__main__':
     subprocess.check_output(run_backend_srver)
     subprocess.check_output(run_frontend_srver)
