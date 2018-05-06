@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
    <head>
@@ -28,7 +26,7 @@
       <link rel="stylesheet"
          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
    </head>
-   <body class="hold-transition login-page">
+   <body class="hold-transition login-page" dir="rtl">
       <div class="login-logo">
          <a href="#"><b>LTTS </b>Lunch Order</a>
          <img class="center" src="../static/images/logo.png" alt="Photo">
@@ -39,10 +37,10 @@
       <!-- /.login-logo -->
       <div style="padding:10px;">
          <form action="/get_order" method="post">
-            <h4>Please choose one main dish and two side dishes Until 10:45 AM</h4>
+            <h4>נא לבחור מנה עיקרית אחת ושתי תוספות עד 10:45</h4>
             {% for field in order_fields %}
             <div class="form-group has-feedback">
-               {% if field == "cibus_number" or field == "name" %}
+               {% if field == "מס'_סיבוס" or field == "שם" %}
                <input type="text" placeholder={{ field }} name={{ field }}  required>
                {% else %}
                <input type="text" placeholder={{ field }} name={{ field }} >
@@ -50,18 +48,18 @@
             </div>
             {% endfor %}
             <div class="form-group has-feedback">
-               <input type="text" placeholder="notes" name="notes">
+               <input type="text" placeholder="הערות" name="notes">
             </div>
             <div class="row">
                {% if order_done == True %}
                <div class="alert alert-success col-sm-3" role="alert" style="padding:20px">
-                  <strong>Great!</strong> Your order was completed successfully.
-                   <br>Return back <a href="/">click</a>
+                  <strong>מצויין!</strong> הזמנתך נשלחה
+                   <br> חזור <a href="/">click</a>
                </div>
                {% endif %}
                {% if order_canceled == True %}
                <div class="alert alert-info col-sm-3" role="alert">
-                  Your order was canceld successfully.
+                  הזמנתך בוטלה
                   <br> Return back <a href="/">click</a>
                </div>
                {% endif %}
@@ -73,14 +71,14 @@
                {% endif %}
                <!-- /.col -->
                <div class="col-xs-6" style="padding:20px">
-                  <button type="submit" class="btn btn-primary " name="submit" value="submit">Submit</button>
+                  <button type="submit" class="btn btn-primary " name="submit" value="submit">הזמן/י</button>
                </div>
                <div class="col-xs-6" style="padding:15px">
-                  <p>In order to cancel your order, please click below before 10:45 AM </p>
-                  <button type="submit" class="btn btn-warning" name="submit" value="cancel" >Cancel</button>
+                  <p>כדי לבטל את ההזמנה, לחץ/י על ביטול הזמנה עד השעה 10:45 </p>
+                  <button type="submit" class="btn btn-warning" name="submit" value="cancel" >ביטול הזמנה</button>
                </div>
                <div class="col-sm-2">
-                  <img class="img-responsive" src="../static/images/bonappetit.png" alt="Photo">
+                  <img class="img-responsive" src="../static/images/bonappetit.png" alt="Photo" align="right">
                </div>
                <!-- /.col -->
             </div>
