@@ -1,12 +1,15 @@
-from os import system
+import subprocess, os
 
+run_backend_srver = [['screen', '-S', 'backend'],
+                     ['cd', 'backend/'],
+                     ['python3', 'be_server.py', '&']]
 
+run_frontend_srver = [['screen', '-S', 'backend'],
+                      ['cd', 'frontend/'],
+                      ['python3', 'fe_server.py', '&']]
 if __name__ == '__main__':
-    system('screen -S backend echo mkdcm')
-    system('screen -r backend')
-    system('cd backend/')
-    system('python3 be_server.py &')
+    for command in run_backend_srver:
+        subprocess.check_output(command)
 
-
-
-    # be_server = system('screen -S backend')
+    for command in run_frontend_srver:
+        subprocess.check_output(command)
