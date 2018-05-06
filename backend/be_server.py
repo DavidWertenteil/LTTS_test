@@ -58,15 +58,14 @@ def send_email():
     Send email to the chef
     :return:
     """
-    email_subject_line = 'Please read the email!'
+    email_subject_line = str(datetime.date.today()) + 'הזמנה לתאריך - '
 
     msg = MIMEMultipart()
     msg['From'] = sender_email_address
     msg['To'] = receiver_email_address
     msg['Subject'] = email_subject_line
 
-    email_body = 'Good morning Amit!!' + '\n\n' + "This is an automatic email send to you!!"
-    email_body += '\n\n' + "Have A wonderful day!!" + '\n\n' + "David"
+    email_body = "הזמנת אוכל"
     msg.attach(MIMEText(email_body, 'plain'))
 
     filename = os.path.join(path_to_send_to_chef_files,
