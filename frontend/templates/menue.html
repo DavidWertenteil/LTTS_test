@@ -31,11 +31,11 @@
          <a href="#"><b>LTTS </b>Lunch Order</a>
          <img class="center" src="../static/images/logo.png" alt="Photo">
       </div>
-      <div class="col-sm-6" dir="rtl">
+      <div class="col-sm-6 pull-right">
          <img class="img-responsive" style="margin: 0 auto;" src="../static/images/menue.png" alt="Photo">
       </div>
       <!-- /.login-logo -->
-      <div style="padding:10px;">
+      <div style="padding:10px;" class="pull-leftt">
          <form action="/get_order" method="post">
             <h4>נא לבחור מנה עיקרית אחת ושתי תוספות עד 10:45</h4>
             {% for field in order_fields %}
@@ -54,7 +54,7 @@
                {% if order_done == True %}
                <div class="alert alert-success col-sm-3" role="alert" style="padding:20px">
                   <strong>מצויין!</strong> הזמנתך נשלחה
-                   <br> חזור <a href="/">click</a>
+                   <br> חזור <a href="/">כאן</a>
                </div>
                {% endif %}
                {% if order_canceled == True %}
@@ -78,7 +78,7 @@
                   <button type="submit" class="btn btn-warning" name="submit" value="cancel" >ביטול הזמנה</button>
                </div>
                <div class="col-sm-2 pull-right">
-                  <img class="img-responsive" src="../static/images/bonappetit.png" alt="Photo">
+                  <img class="img-responsive" src="../static/images/bonappetit.png" alt="Photo" style="padding:30px;">
                </div>
                <!-- /.col -->
             </div>
