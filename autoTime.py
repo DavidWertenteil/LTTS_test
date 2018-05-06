@@ -11,13 +11,17 @@ from email.mime.base import MIMEBase
 from email import encoders
 from ps import ps
 import csv
+from common import ORDER_FIELDS
 
 path_to_order_files = 'order_files/'
 path_to_send_to_chef_files = 'send_to_chef_files/'
 sender_email_address = 'LttsLunch@gmail.com'
 sender_email_password = ps
 receiver_email_address = 'davw664@gmail.com'
-fields = ["cibus", "name", "main_dish", "side_dish_no.1", "side_dish_no.2"]
+
+# Add the field notes to the end of the list
+fields = ORDER_FIELDS
+fields.append('notes')
 
 
 def set_order():
@@ -39,6 +43,10 @@ def set_order():
 
 
 def empty_orders_dir():
+    """
+    Delete all json files from the 'order_files' file
+    :return:
+    """
     path = os.path.join(path_to_order_files, '*.json')
     files = glob.glob(path)
     for name in files:
@@ -46,6 +54,10 @@ def empty_orders_dir():
 
 
 def send_email():
+    """
+    Send email to the chef
+    :return:
+    """
     email_subject_line = 'Please read the email!'
 
     msg = MIMEMultipart()
@@ -77,10 +89,12 @@ def send_email():
 
 
 if __name__ == '__main__':
-    # set_order()
-    schedule.every().day.at("10:45").do(set_order)
-    schedule.every().day.at("11:46").do(send_email)
-    schedule.every().day.at("11:57").do(empty_orders_dir)
+    set_order()
+    send_email()
+    empty_orders_dir()
+    # schedule.every().day.at("10:45").do(set_order)
+    # schedule.every().day.at("11:46").do(send_email)
+    # schedule.every().day.at("11:57").do(empty_orders_dir)
     #
     # schedule.every(2).minutes.do(set_order)
     #
