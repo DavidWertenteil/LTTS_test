@@ -38,7 +38,7 @@ def get_order():
 
     else:
         print(order)
-        with open(file_path, 'w') as fp:
+        with open(file_path, 'w+') as fp:
             json.dump(order, fp, indent=4, sort_keys=True)
 
     return render_template('menue.html', order_fields=ORDER_FIELDS, order_done=True), 201
