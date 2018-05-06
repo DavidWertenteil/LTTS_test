@@ -1,5 +1,7 @@
 import subprocess, os
 
+# from backend.be_server import be_server
+#
 #
 # run_backend_srver = [['screen', '-S', 'backend'],
 #                      ['cd', 'backend/'],
@@ -12,6 +14,11 @@ import subprocess, os
 run_backend_srver = ['python3', 'be_server.py', '&']
 run_frontend_srver = ['python3', 'fe_server.py', '&']
 
+os.sys.path.insert(0, "backend/")
+os.sys.path.insert(0, "frontend/fe_server")
+# import be_server
 if __name__ == '__main__':
-    subprocess.check_output(run_backend_srver)
-    subprocess.check_output(run_frontend_srver)
+    os.system('python3 backend/be_server.py &')
+    # os.system(' ')
+    # subprocess.check_output(run_backend_srver)
+    # subprocess.check_output(run_frontend_srver)
