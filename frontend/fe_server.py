@@ -5,7 +5,7 @@ from config.common import ORDER_FIELDS, MAX_TIME_FOR_ORDERING
 import datetime
 
 app = Flask(__name__)
-path_to_order_files = 'order_files/'
+path_to_order_files = 'frontend/order_files/'
 cibus_number = ORDER_FIELDS[0]
 
 

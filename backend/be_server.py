@@ -14,7 +14,7 @@ import csv
 from config.common import ORDER_FIELDS
 
 path_to_order_files = '../frontend/order_files/'
-path_to_send_to_chef_files = 'send_to_chef_files/'
+path_to_send_to_chef_files = 'backend/send_to_chef_files/'
 sender_email_address = 'LttsLunch@gmail.com'
 sender_email_password = ps
 receiver_email_address = 'davw664@gmail.com'
