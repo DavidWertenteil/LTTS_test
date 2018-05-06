@@ -54,28 +54,28 @@
                {% if order_done == True %}
                <div class="alert alert-success col-sm-3" role="alert" style="padding:20px">
                   <strong>מצויין!</strong> הזמנתך נשלחה
-                   <br> חזור <a href="/">כאן</a>
+                   <br> חזור/י <a href="/">כאן</a>
                </div>
                {% endif %}
                {% if order_canceled == True %}
                <div class="alert alert-info col-sm-3" role="alert">
                   הזמנתך בוטלה
-                  <br> Return back <a href="/">click</a>
+                  <br> חזור/י <a href="/">כאן</a>
                </div>
                {% endif %}
                {% if order_canceled == False %}
                <div class="alert alert-info col-sm-3" role="alert">
-                  Your didn't order lunch yet.
-                   <br>Return back <a href="/">click</a>
+                  אין הזמנה על שמך
+                   <br>חזור/י <a href="/">כאן</a>
                </div>
                {% endif %}
                <!-- /.col -->
                <div class="col-xs-6" style="padding:20px">
-                  <!--<div class="col-sm-2">-->
-                  <button type="submit" class="btn btn-primary pull-right" name="submit" value="submit">הזמן/י</button>
-                  <img class="img-responsive" src="../static/images/bonappetit.png" alt="Photo" style="padding:5px; height:20%; width:20%">
-                  <!--</div>-->
+                  <button type="submit" class="btn btn-primary" name="submit" value="submit">הזמן/י</button>
                </div>
+              <div class="col-sm-2 pull-right">
+                <img class="img-responsive" src="../static/images/bonappetit.png" alt="Photo" style="height:70%; width:70%">
+              </div>
                <div class="col-xs-6" style="padding:15px">
                   <p>כדי לבטל את ההזמנה, לחץ/י על ביטול הזמנה עד השעה 10:45 </p>
                   <button type="submit" class="btn btn-warning" name="submit" value="cancel" >ביטול הזמנה</button>
@@ -86,11 +86,12 @@
          <!-- Main Footer -->
          <footer style="padding:20px;float:bottom">
             <!-- To the right -->
-            <div class="pull-right ">
+            <div class="pull-left">
                &nbsp;&nbsp;LTTS Lunch Order
+                <strong>&nbsp;Copyright &copy; 2018 <a href="#">Engineering group Jerusalem</a>.</strong> All rights reserved
             </div>
             <!-- Default to the left -->
-            <strong>&nbsp;Copyright &copy; 2018 <a href="#">Engineering group Jerusalem</a>.</strong> All rights reserved.
+
          </footer>
       </div>
       <!-- /.login-box-body -->
