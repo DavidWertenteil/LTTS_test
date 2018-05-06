@@ -34,6 +34,7 @@ def get_order():
         if (os.path.isfile(file_path)):
             os.remove(file_path)
             order_canceled = True
+        return render_template('menue.html', order_fields=ORDER_FIELDS, order_canceled=order_canceled), 201
 
     else:
         print(order)
