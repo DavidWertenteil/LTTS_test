@@ -81,7 +81,7 @@ def send_email():
     part = MIMEBase('application', 'octet-stream')
     with open(filename, 'rb') as attachment_file:
         part.set_payload(attachment_file.read())
-        encoders.encode_base64(part)
+        # encoders.encode_base64(part)
         part.add_header('Content-Disposition', "attachment_file; filename = order_lunch_" +
                         str(datetime.date.today()) + '.csv')
 
