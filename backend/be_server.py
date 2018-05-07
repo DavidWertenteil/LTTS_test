@@ -17,7 +17,7 @@ path_to_order_files = 'frontend/order_files/'
 path_to_send_to_chef_files = 'backend/send_to_chef_files/'
 sender_email_address = 'LttsLunch@gmail.com'
 sender_email_password = ps
-receiver_email_address = 'David.Wertenteil@LntTechservices.com'
+receiver_email_address = 'Amit.Tene@lnttechservices.com'
     # 'David.Wertenteil@LntTechservices.com'
 # 'Amit.Tene@lnttechservices.com'
 
