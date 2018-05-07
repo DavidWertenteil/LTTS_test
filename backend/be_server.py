@@ -27,19 +27,25 @@ fields.append('notes')
 def set_order():
     path = os.path.join(path_to_order_files, '*.json')
     files = glob.glob(path)
-    with open(os.path.join(path_to_send_to_chef_files, 'order_lunch_' + str(datetime.date.today())) + '.csv',
-              'w+', newline='') as outfile:
-        writer = csv.DictWriter(outfile, fieldnames=fields)
-        writer.writeheader()
+    try:
+        with open(os.path.join(path_to_send_to_chef_files, 'order_lunch_' + str(datetime.date.today())) + '.csv',
+                  'w+', newline='') as outfile:
+            writer = csv.DictWriter(outfile, fieldnames=fields)
+            writer.writeheader()
 
-        for name in files:
-            try:
-                with open(name, encoding='utf-8') as f:
-                    writer.writerow(dict(json.load(f)))
+            for name in files:
+                try:
+                    with open(name, encoding='utf-8') as f:
+                        writer.writerow(dict(json.load(f)))
+                except IOError as exc:
+                    if exc.errno != errno.EISDIR:
+                        raise
+    except IOError as exc:
+        if exc.errno != errno.EISDIR:
+            raise
 
-            except IOError as exc:
-                if exc.errno != errno.EISDIR:
-                    raise
+    # Now that the csv is ready send the email
+    send_email()
 
 
 def empty_orders_dir():
@@ -86,12 +92,14 @@ def send_email():
     server.sendmail(sender_email_address, receiver_email_address, email_body_content)
     server.quit()
 
+    # Now that the email was send we can delete all json files
+    empty_orders_dir()
+
 
 if __name__ == '__main__':
     set_order()
-    send_email()
-    empty_orders_dir()
-    # schedule.every().day.at("17:24").do(set_order)
+
+    schedule.every().day.at("09:26").do(set_order)
     # schedule.every().day.at("17:25").do(send_email)
     # schedule.every().day.at("17:26").do(empty_orders_dir)
     #
