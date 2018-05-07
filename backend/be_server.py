@@ -17,7 +17,8 @@ path_to_order_files = '../frontend/order_files/'
 path_to_send_to_chef_files = 'backend/send_to_chef_files/'
 sender_email_address = 'LttsLunch@gmail.com'
 sender_email_password = ps
-receiver_email_address = 'davw664@gmail.com'
+receiver_email_address = 'Amit.Tene@lnttechservices.com'
+    # 'David.Wertenteil@LntTechservices.com'
 
 # Add the field notes to the end of the list
 fields = ORDER_FIELDS
@@ -99,7 +100,7 @@ def send_email():
 if __name__ == '__main__':
     set_order()
 
-    schedule.every().day.at("09:26").do(set_order)
+    schedule.every().day.at("09:29").do(set_order)
     # schedule.every().day.at("17:25").do(send_email)
     # schedule.every().day.at("17:26").do(empty_orders_dir)
     #
