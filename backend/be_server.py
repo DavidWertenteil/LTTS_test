@@ -17,7 +17,7 @@ path_to_order_files = 'frontend/order_files/'
 path_to_send_to_chef_files = 'backend/send_to_chef_files/'
 sender_email_address = 'LttsLunch@gmail.com'
 sender_email_password = ps
-receiver_email_address = 'Amit.Tene@lnttechservices.com'
+receiver_email_address = 'amitene@gmail.com'
     # 'David.Wertenteil@LntTechservices.com'
 # 'Amit.Tene@lnttechservices.com'
 
@@ -81,7 +81,7 @@ def send_email():
     part = MIMEBase('application', 'octet-stream')
     with open(filename, 'rb') as attachment_file:
         part.set_payload(attachment_file.read())
-        # encoders.encode_base64(part)
+        encoders.encode_base64(part)
         part.add_header('Content-Disposition', "attachment_file; filename = order_lunch_" +
                         str(datetime.date.today()) + '.csv')
 
