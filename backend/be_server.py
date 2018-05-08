@@ -98,8 +98,6 @@ def send_email():
 
 if __name__ == '__main__':
     # schedule.every().day.at(conf.ORDER_TIME).do(set_order)
-    # schedule.every().day.at("17:25").do(send_email)
-    # schedule.every().day.at("17:26").do(empty_orders_dir)
-    schedule.every(2).minutes.do(set_order)
+    
     while True:
         schedule.run_pending()
