@@ -37,7 +37,7 @@
       <!-- /.login-logo -->
       <div style="padding:10px;" class="pull-leftt">
          <form action="/get_order" method="post">
-            <h4>נא לבחור מנה עיקרית אחת ושתי תוספות עד 10:45</h4>
+            <h4>נא לבחור מנה עיקרית אחת, שתי תוספות וסלטים עד {{order_time}}</h4>
             {% for field in order_fields %}
             <div class="form-group has-feedback">
                {% if field == "מס'_סיבוס" or field == "שם" %}
@@ -77,7 +77,7 @@
                 <img class="img-responsive" src="../static/images/bonappetit.png" alt="Photo" style="height:70%; width:70%">
               </div>
                <div class="col-xs-6" style="padding:15px">
-                  <p>כדי לבטל את ההזמנה, לחץ/י על ביטול הזמנה עד השעה 10:45 </p>
+                  <p>כדי לבטל את ההזמנה, אנא הקלד למעלה מספר סיבוס ושם, ולחץ/י על ביטול הזמנה עד השעה {{order_time}} </p>
                   <button type="submit" class="btn btn-warning" name="submit" value="cancel" >ביטול הזמנה</button>
                </div>
                <!-- /.col -->
