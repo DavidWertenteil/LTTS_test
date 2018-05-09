@@ -40,7 +40,7 @@ def get_order():
     else:
         print(order)
         with open(file_path, 'w+') as fp:
-            json.dump(order, fp, indent=4, sort_keys=True)
+            json.dump(order, fp, indent=4, sort_keys=True, ensure_ascii=False)
 
     return render_template('menue.html', order_fields=ORDER_FIELDS, order_done=True, order_time=ORDER_TIME), 201
 
